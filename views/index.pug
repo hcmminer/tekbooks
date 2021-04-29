@@ -1,0 +1,21 @@
+extends layouts/master
+
+block content
+  .grid-x
+    if books 
+      each book in books 
+        div(class='card cell large-3 p-1 book')
+          img(src="/images/"+ book.cover alt="")
+          h4=book.title 
+          p=book.truncText 
+          .price Buy it for 
+            span $#{book.price}
+          br
+          a(href='/books/details/' + book._id class='button small') Book details
+
+
+
+
+
+
+

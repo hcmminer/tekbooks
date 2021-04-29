@@ -1,0 +1,29 @@
+{
+  "name": "tekbooks",
+  "version": "0.0.0",
+  "private": true,
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "docs/*"
+    ],
+    "delay": "2500"
+  },
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "*",
+    "debug": "*",
+    "express": "*",
+    "express-session": "^1.17.1",
+    "http-errors": "*",
+    "mongoose": "^5.12.6",
+    "morgan": "*",
+    "pug": "*"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

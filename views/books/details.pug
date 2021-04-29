@@ -1,0 +1,20 @@
+extends ../layouts/master
+block content
+    .grid-x
+        if book
+            div(class='cell large-4 p-1 book')
+                img(src="/images/" + book.cover)
+            div(class='cell large-8 p-1 book')
+                h2 #{book.title} 
+                div
+                    p Category: #{book.category}
+                    p Author: #{book.author}
+                    p Pushlisher: #{book.pushlisher}
+                br
+                .price 
+                    span $#{book.price}
+                br
+                p=book.description
+                a(href='/cart' class='button small success') Add To Cart
+            
+    

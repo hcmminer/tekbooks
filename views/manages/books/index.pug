@@ -1,0 +1,26 @@
+extends ../../layouts/manage
+block content 
+    h2 Books 
+    p
+        a(href='/manages/books/add') Add Book 
+    table
+        thead 
+            tr
+                th(width="300") ID 
+                th Book
+                th(width="150") Category
+                th(width="150")
+                th 
+        tbody
+            each book in books
+                tr 
+                    td=book._id 
+                    td=book.title
+                    td=book.category
+                    td
+                        a(href='/manages/books/edit/' + book._id) Edit
+                    td  
+                        a(data-id=book._id) Delete
+    
+
+

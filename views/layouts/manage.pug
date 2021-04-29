@@ -1,0 +1,31 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet' href='/stylesheets/foundation.css')
+        link(rel='stylesheet' href='/stylesheets/style.css')
+    body
+        .row
+            .top-bar
+                .top-bar-left
+                    ul.dropdown.menu(data-dropdown-menu)
+                        li.menu-text DashBoard
+                        li
+                            a(href="/manages") DashBoard
+                        li
+                            a(href="/manages/books") Books
+                        li
+                            a(href="/manages/categories") Categories
+        if locals.messages
+            each message,key in messages
+                span(class="label "+key style='margin-top: 20px')=message
+        block content
+
+        .row 
+            footer Tekbooks &#169; 2021 | 
+                a(href='/') FrontEnd
+    script(src="/javascripts/vendor.js")
+    script(src="/javascripts/foundation.js")
+    script.
+        $(document).foundation();
+
