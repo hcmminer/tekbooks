@@ -5,11 +5,11 @@ block content
     if books 
       each book in books 
         div(class='card cell large-3 p-1 book')
-          img(src=book.cover alt="")
+          img(src=book.cover alt="") 
           h4=book.title 
           p=book.truncText 
           .price Buy it for 
-            span $#{book.price}
+            span $#{book.price} 
           br
           a(href='/books/details/' + book._id class='button small') Book details
 

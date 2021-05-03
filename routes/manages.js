@@ -91,8 +91,79 @@ router.post("/books/edit/:id", function (req, res, next) {
 		}
 	);
 });
+router.post("/books/delete/:id", function (req, res, next) {
+	BookModel.deleteOne({ _id: req.params.id }, (err, doc) => {
+		if (err) {
+			console.log("ok");
+		} else {
+			req.flash("success", "Book Deleted");
+			res.redirect("/manages/books");
+		}
+	});
+});
 router.get("/categories", function (req, res, next) {
-	res.render("manages/categories/index");
+	CategoryModel.find({}, (err, categories) => {
+		res.render("manages/categories/index", {
+			categories: categories,
+		});
+	});
+});
+router.post("/categories", function (req, res, next) {
+	const name = req.body.name && req.body.name.trim();
+
+	if (name == "") {
+		req.flash("alert", "Please fill out required fields");
+		res.redirect("/manages/categories/add");
+	} else {
+		const newCategory = new CategoryModel({
+			name: name,
+		});
+
+		newCategory.save(function (err) {
+			if (err) return handleError(err);
+			req.flash("success", "Category Added");
+			res.redirect("/manages/categories");
+		});
+	}
+});
+router.get("/categories/add", function (req, res, next) {
+	res.render("manages/categories/add");
+});
+router.get("/categories/edit/:id", function (req, res, next) {
+	CategoryModel.findOne({ _id: req.params.id }, (err, category) => {
+		if (err) return handleError(err);
+		res.render("manages/categories/edit", {
+			category: category,
+		});
+	});
+});
+router.post("/categories/edit/:id", function (req, res, next) {
+	const name = req.body.name && req.body.name.trim();
+
+	if (name == "") {
+		req.flash("alert", "Please fill out required fields");
+		res.redirect("/manages/categories/add");
+	} else {
+		CategoryModel.updateOne(
+			{ _id: req.params.id },
+			{ name: name },
+			function (err) {
+				if (err) return handleError(err);
+				req.flash("success", "Category Updated");
+				res.redirect("/manages/categories");
+			}
+		);
+	}
+});
+router.post("/categories/delete/:id", function (req, res, next) {
+	CategoryModel.deleteOne({ _id: req.params.id }, (err, doc) => {
+		if (err) {
+			console.log("ok");
+		} else {
+			req.flash("success", "Category Deleted");
+			res.redirect("/manages/categories");
+		}
+	});
 });
 
 module.exports = router;

@@ -1,1 +1,28 @@
-h1 index cat
+extends ../../layouts/manage
+block content 
+    h2 Categories 
+    p
+        a(href='/manages/categories/add') Add Category 
+    table
+        thead 
+            tr
+                th(width="200") ID 
+                th(width="200") Category Name
+                th(width="180") 
+                th(width="180")
+        tbody
+            each category in categories
+                tr 
+                    td=category._id
+                    td=category.name
+                    td
+                        a(href='/manages/categories/edit/' + category._id) Edit
+                    td  
+                        form(method='post' action='/manages/categories/delete/' + category._id)
+                            div(class='row')
+                                input(type="submit" value='Delete' class='button alert' style='margin:0')
+                                input(type="hidden" name='_csrf' value=_csrf)
+                                input(type="hidden" name='_method' value="DELETE")
+
+
+

@@ -1,1 +1,15 @@
-h1 edit cat 
+extends ../../layouts/manage
+block content
+    h1 Edit Category
+    form(action='/manages/categories/edit/' + category._id method="post")
+        .grid-container
+            .grid-x.grid-padding-x
+                .large-12.cell
+                    label
+                        | Name
+
+                        input(type="text" placeholder="" name='name' value=category.name)
+                .large-12.cell
+                    label
+                        input(type="submit" class='button')
+                        input(type="hidden" name='_csrf' value=_csrf )

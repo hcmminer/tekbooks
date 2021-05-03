@@ -20,7 +20,11 @@ block content
                     td
                         a(href='/manages/books/edit/' + book._id) Edit
                     td  
-                        a(data-id=book._id) Delete
-    
+                        form(method='post' action='/manages/books/delete/' + book._id)
+                            div(class='row')
+                                input(type="submit" value='Delete' class='button alert' style='margin:0')
+                                input(type="hidden" name='_csrf' value=_csrf)
+                                input(type="hidden" name='_method' value=DELETE)
+
 
 
