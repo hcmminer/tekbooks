@@ -11,7 +11,7 @@ html
           ul.dropdown.menu(data-dropdown-menu)
             li.menu-text Tekbooks
             li
-              a(href="#") Home
+              a(href="/") Home
               ul.menu.vertical
                 li
                   a(href="#") One
@@ -20,15 +20,15 @@ html
                 li
                   a(href="#") Three
             li
-              a(href="#") About
+              a(href="/pages/about") About
             li
-              a(href="#") Cart
+              a(href="/cart") Cart
     if locals.messages
       each message,key in messages
         span(class="label "+key style='margin-top: 20px')=message
     block content
 
-    .row 
+    .row
       footer Tekbooks &#169; 2021 | 
         a(href='/manages') Manage
   script(src="/javascripts/vendor.js")

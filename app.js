@@ -10,6 +10,9 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var booksRouter = require("./routes/books");
 var managesRouter = require("./routes/manages");
+var pagesRouter = require("./routes/pages");
+var cartRouter = require("./routes/cart");
+
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/tekbooks", {
 	useNewUrlParser: true,
@@ -48,6 +51,8 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/books", booksRouter);
 app.use("/manages", managesRouter);
+app.use("/pages", pagesRouter);
+app.use("/cart", cartRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -1,0 +1,62 @@
+extends ../layouts/master
+
+block content
+    .row 
+        .large-12.columns
+            h2 Shopping Cart 
+                span 
+                    a(href='/cart/remove' style='font-size:1rem') Empty Cart
+            if (cart.items.length > 0)
+                table
+                    thead
+                        tr 
+                            th Item 
+                            th Quantity
+                            th Total 
+                    tbody
+                        each item,i in cart.items
+                            tr
+                                td
+                                    a(href='books/details/' + item._id)=item.title
+                                td=item.qty
+                                td="$"+item.price*item.qty
+                div(class='grid-x')
+                    div(class='large-6 cell')
+                        h4 
+                            | Total:&nbsp
+                            strong= "$" + cart.total
+                    div(class='large-6 cell')
+                        script(src="https://www.paypal.com/sdk/js?client-id=AR3l3kosrKiOkUiDK3IKD99-wxq0fC1MkVAHctuEEM8DN9m5ktumld_tgctO8c0kHieGklGdHVhu90XS").
+
+                        #paypal-button-container
+
+                        script.
+                            paypal.Buttons({
+                            createOrder: function(data, actions) {
+                            return actions.order.create({
+                            purchase_units: [{
+                            amount: {
+                            value: #{cart.total}
+                            }
+                            }]
+                            });
+                            },
+                            onApprove: function(data, actions) {
+                            return actions.order.capture().then(function(details) {
+                            alert('Transaction completed by ' + details.payer.name.given_name);
+                            });
+                            }
+                            }).render('#paypal-button-container');
+            else 
+                p there are no items in your cart
+
+
+
+
+
+
+
+
+
+
+

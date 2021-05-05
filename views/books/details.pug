@@ -15,5 +15,7 @@ block content
                     span $#{book.price}
                 br
                 p=book.description
-                a(href='/cart' class='button small success') Add To Cart
+                form(method='post' action='/cart/' + book._id)
+                    input(type='submit' class='button small success' value='Add To Cart')
+                    input(type='hidden' name='_csrf' value=_csrf)
 
